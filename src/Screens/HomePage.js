@@ -1,9 +1,9 @@
 import React from 'react'
-import WhiteBoard from '../Components/WhiteBoard'
+import ReactSimpleWhiteBoard from '../Components/ReactSimpleWhiteBoard.js'
 
 const HomePage = () => {
   return (
-    <WhiteBoard/>
+    <ReactSimpleWhiteBoard/>
   )
 }
 
