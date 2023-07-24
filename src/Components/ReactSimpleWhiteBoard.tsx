@@ -31,10 +31,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
 
     whiteBoard.current = new SimpleWhiteBoard(canvasRef.current);
 
-    const canvas = canvasRef.current;
-    const ctx = canvasRef.current?.getContext('2d');
-    ctx!.fillStyle = 'white';
-    ctx!.fillRect(0, 0, canvas!.width, canvas!.height);
+    setWhite();
 
     return () => {
       if (whiteBoard.current) {
@@ -68,6 +65,13 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
     a.click();
   }
 
+  function setWhite() {
+    const canvas = canvasRef.current;
+    const ctx = canvasRef.current?.getContext('2d');
+    ctx!.fillStyle = 'white';
+    ctx!.fillRect(0, 0, canvas!.width, canvas!.height);
+  }
+
 
   return (
     <div className="react-simple-white-board">
@@ -84,9 +88,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         height={canvasWidth}
       />
       <div>
-        <button onClick={() => whiteBoard.current?.erase()}>Clear</button>
-      </div>
-      <div>
+        <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
         <button onClick={saveImage}>Get image</button>
       </div>
     </div>
