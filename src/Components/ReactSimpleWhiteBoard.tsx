@@ -58,7 +58,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         height={canvasWidth}
       />
       <div>
-        <button onClick={() => whiteBoard.current?.erase()}>Erase</button>
+        <button onClick={() => whiteBoard.current?.erase()}>Clear</button>
       </div>
     </div>
   );
