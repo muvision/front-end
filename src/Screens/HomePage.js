@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactSimpleWhiteBoard from '../Components/ReactSimpleWhiteBoard.js'
+import ReactSimpleWhiteBoard from '../Components/ReactSimpleWhiteBoard.tsx'
 
 const HomePage = () => {
   return (
