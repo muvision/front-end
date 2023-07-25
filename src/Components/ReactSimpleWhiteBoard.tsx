@@ -1,6 +1,8 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import SimpleWhiteBoard from "simple-white-board";
 import Controls from "./Controls";
+import axios from 'axios';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export interface ReactSimpleWhiteBoardProps {
 }
@@ -65,13 +67,29 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
     a.click();
   }
 
-  function setWhite() {
+  const setWhite = () => {
     const canvas = canvasRef.current;
     const ctx = canvasRef.current?.getContext('2d');
     ctx!.fillStyle = 'white';
     ctx!.fillRect(0, 0, canvas!.width, canvas!.height);
   }
 
+  const sendImage = async () => {
+    const canvas = canvasRef.current;
+    const ctx = canvasRef.current?.getContext('2d');
+    if (canvas != null && ctx != null) {
+      let dataURL = canvas.toDataURL("image/png", 1.0);
+      console.log(dataURL);
+      const formData = new FormData();
+      formData.append('image', dataURL);
+      let res = await axios.post('http://localhost:8000/muvision/classify_single/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      })
+      console.log(res.data);
+    }
+  }
 
   return (
     <div className="react-simple-white-board">
@@ -90,6 +108,8 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
       <div>
         <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
         <button onClick={saveImage}>Get image</button>
+        <button onClick={sendImage}>Send image</button>
+
       </div>
     </div>
   );

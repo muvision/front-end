@@ -3,7 +3,9 @@ import ReactSimpleWhiteBoard from '../Components/ReactSimpleWhiteBoard.tsx'
 
 const HomePage = () => {
   return (
-    <ReactSimpleWhiteBoard/>
+    <>
+      <ReactSimpleWhiteBoard/>
+    </>
   )
 }
 
