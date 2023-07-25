@@ -14,7 +14,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   const [canvasWidth, setCanvasWidth] = useState<number>();
 
   useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement, []);
-  const [lineWidth, setLineWidth] = useState(5);
+  const [lineWidth, setLineWidth] = useState(30);
   const [lineColor, setLineColor] = useState("#000000");
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
       let dataURL = canvas.toDataURL("image/png", 1.0);
       const response = await fetch(dataURL);
       const blob = await response.blob();
-      console.log(dataURL);
+      console.log("loading")
       const formData = new FormData();
       formData.append("image", blob, 'image.png');
       let res = await axios.post('http://localhost:8000/muvision/classify_single/', formData, {

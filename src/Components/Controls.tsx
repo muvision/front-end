@@ -21,7 +21,7 @@ export default function Controls(props: Props) {
             setLineColor(event.target.value);
           }}
         />
-      </div>
+      </div> */}
       <div className="react-simple-white-board-control">
         <label style={{ marginRight: 10 }}>Brush Width</label>
         <input
@@ -33,7 +33,7 @@ export default function Controls(props: Props) {
             setLineWidth(event.target.value);
           }}
         />
-      </div> */}
+      </div>
     </div>
   );
 };
