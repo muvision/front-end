@@ -56,6 +56,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
     if (canvas != null && ctx != null) {
       let dataURL = canvas.toDataURL("image/png", 1.0);
       downloadImage(dataURL, 'my-canvas.png');
+      console.log(dataURL)
     }
   }
 
@@ -79,9 +80,11 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
     const ctx = canvasRef.current?.getContext('2d');
     if (canvas != null && ctx != null) {
       let dataURL = canvas.toDataURL("image/png", 1.0);
+      const response = await fetch(dataURL);
+      const blob = await response.blob();
       console.log(dataURL);
       const formData = new FormData();
-      formData.append('image', dataURL);
+      formData.append("image", blob, 'image.png');
       let res = await axios.post('http://localhost:8000/muvision/classify_single/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
