@@ -10,31 +10,27 @@ export interface ReactSimpleWhiteBoardProps {
 const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactSimpleWhiteBoardProps, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const whiteBoard = useRef<SimpleWhiteBoard>();
-
-  const [canvasWidth, setCanvasWidth] = useState<number>();
-
-  useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement, []);
-  const [lineWidth, setLineWidth] = useState(30);
+  const [canvasWidth, setCanvasWidth] = useState<number>(Math.min(window.innerHeight*0.8, window.innerWidth * 0.6));
+  const [lineWidth, setLineWidth] = useState(3);
   const [lineColor, setLineColor] = useState("#000000");
 
-  useEffect(() => {
-    const width = Math.min(
-      typeof window !== "undefined" ? window.screen.width * 0.8 : 500,
-      500
-    );
+  useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement, []);
 
-    setCanvasWidth(width);
-    
-    
-  }, []);
+  // useEffect(() => {
+  //   const width = Math.min(
+  //     typeof window !== "undefined" ? window.innerWidth * 0.6 : 500,
+  //     500
+  //   );
+  //   setCanvasWidth(window.innerWidth * 0.6);
+  // }, []);
 
   useEffect(() => {
+    // I think this is run when the canvas is first created
     if (!canvasRef.current) return;
-
     whiteBoard.current = new SimpleWhiteBoard(canvasRef.current);
-
     setWhite();
-
+    whiteBoard.current.setLineColor(lineColor);
+    whiteBoard.current.setLineWidth(lineWidth);
     return () => {
       if (whiteBoard.current) {
         whiteBoard.current.dispose();
@@ -44,11 +40,9 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
 
   useEffect(() => {
     if (!whiteBoard.current) return;
-
     whiteBoard.current.setLineColor(lineColor);
     whiteBoard.current.setLineWidth(lineWidth);
   }, [lineColor, lineWidth]);
-
 
   const saveImage = () => {
     const canvas = canvasRef.current;
