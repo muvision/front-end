@@ -1,9 +1,20 @@
 import React from 'react'
-import HomePage from './Screens/HomePage'
+import Navbar from './Components/NavBar.jsx'
+import { WhiteBoard } from './container/WhiteBoard.jsx'
+import { Features } from './container/Features.jsx'
+import HowItWorks from './container/HowItWorks.jsx'
+import { WhatWeDo } from './container/WhatWeDo.jsx'
 
 const App = () => {
   return (
-    <HomePage/>
+    <>
+      <Navbar/>
+      <WhatWeDo/>
+      <WhiteBoard/>
+      <Features/>
+      <HowItWorks/>
+    </>
+
   )
 }
 
