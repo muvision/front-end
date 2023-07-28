@@ -13,6 +13,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   const [canvasWidth, setCanvasWidth] = useState<number>(Math.min(window.innerHeight*0.8, window.innerWidth * 0.6));
   const [lineWidth, setLineWidth] = useState(3);
   const [lineColor, setLineColor] = useState("#000000");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement, []);
 
@@ -69,6 +70,18 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
     ctx!.fillRect(0, 0, canvas!.width, canvas!.height);
   }
 
+  const handleFileChange = (e: any) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    const canvas = canvasRef.current;
+    const image = new Image();
+    image.src = URL.createObjectURL(file);
+    image.onload = () => {
+      const ctx = canvasRef.current?.getContext('2d');
+      ctx?.drawImage(image, 0, 0, canvas!.width, canvas!.height)
+    }
+  }
+
   const sendImage = async () => {
     const canvas = canvasRef.current;
     const ctx = canvasRef.current?.getContext('2d');
@@ -107,8 +120,20 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         <div>
           <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
           <button onClick={saveImage}>Get image</button>
-          <button onClick={sendImage}>Send image</button>
+          <button>
+            <label htmlFor="upload-button" className="upload-button">
+              Upload Image
+            </label>
+            <input
+              type="file"
+              id="upload-button"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+          </button>
+          {selectedFile && <span>{selectedFile.name}</span>}
 
+          <button onClick={sendImage}>Send image</button>
         </div>
       </div>
     </>
