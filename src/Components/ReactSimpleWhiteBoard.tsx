@@ -95,26 +95,29 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   }
 
   return (
-    <div className="react-simple-white-board">
-      <Controls
-        lineColor={lineColor}
-        lineWidth={lineWidth}
-        setLineColor={setLineColor}
-        setLineWidth={setLineWidth}
-      />
-      <canvas
-        ref={canvasRef}
-        style={{ border: '#000000 solid 1px' }}
-        width={canvasWidth}
-        height={canvasWidth}
-      />
-      <div>
-        <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
-        <button onClick={saveImage}>Get image</button>
-        <button onClick={sendImage}>Send image</button>
+    <>
+      <h1>Demo</h1>
+      <div className="react-simple-white-board">
+        <Controls
+          lineColor={lineColor}
+          lineWidth={lineWidth}
+          setLineColor={setLineColor}
+          setLineWidth={setLineWidth}
+        />
+        <canvas
+          ref={canvasRef}
+          style={{ border: '#000000 solid 1px' }}
+          width={canvasWidth}
+          height={canvasWidth}
+        />
+        <div>
+          <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
+          <button onClick={saveImage}>Get image</button>
+          <button onClick={sendImage}>Send image</button>
 
+        </div>
       </div>
-    </div>
+    </>
   );
 });
 
