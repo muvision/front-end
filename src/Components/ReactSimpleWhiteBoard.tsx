@@ -92,7 +92,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
       console.log("loading")
       const formData = new FormData();
       formData.append("image", blob, 'image.png');
-      let res = await axios.post('http://localhost:8000/muvision/classify_single/', formData, {
+      let res = await axios.post('http://localhost:8000/muvision/classify_image/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
