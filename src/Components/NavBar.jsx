@@ -8,11 +8,11 @@ const Navbar = () => {
   return (
     <nav className="app__navbar">
       <ul className="app__navbar-links">
-        <li className="p__opensans"><a href="#home">Home</a></li>
-        <li className="p__opensans"><a href="#whatwedo">What We Do</a></li>
-        <li className="p__opensans"><a href="#features">Features</a></li>
-        <li className="p__opensans"><a href="#howitworks">How It Works</a></li>
-        <li className="p__opensans"><a href="#getApp">Get The App</a></li>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#whatwedo">WHAT WE DO</a></li>
+        <li><a href="#features">FEATURES</a></li>
+        <li><a href="#howitworks">HOW IT WORKS</a></li>
+        <li><a href="#getApp">GET THE APP</a></li>
       </ul>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu color="#000" fontSize={27} onClick={() => setToggleMenu(true)} />
@@ -34,5 +34,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
