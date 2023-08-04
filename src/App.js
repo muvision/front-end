@@ -7,13 +7,15 @@ import { WhatWeDo } from './container/WhatWeDo.jsx'
 
 const App = () => {
   return (
-    <div className="mx-10">
+    <>
       <Navbar/>
-      <WhatWeDo/>
-      <WhiteBoard/>
-      <Features/>
-      <HowItWorks/>
-    </ div>
+      <div className="mx-8 md:mx-20 lg:mx-40">
+        <WhatWeDo/>
+        <WhiteBoard/>
+        <Features/>
+        <HowItWorks/>
+      </ div>
+    </>
   )
 }
 
