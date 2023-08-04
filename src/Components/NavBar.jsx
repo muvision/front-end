@@ -58,11 +58,11 @@ export default function Navbar() {
 
   return (
     <header className="bg-white border-b border-theme mb-5">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex items-center justify-between p-3 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="#" className="">
             <span className="sr-only">Your Company</span>
-            <img className="h-12 w-auto scale-150 translate-y-3 mx-9 md:mx-16 lg:mx-18" src="./MuvisionLogo.svg" alt="" />
+            <img className="h-12 w-auto scale-150 translate-y-3 mx-[38px] md:mx-[70px] lg:mx-[66px] xl:mx-[146px]" src="./MuvisionLogo.svg" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -86,7 +86,7 @@ export default function Navbar() {
             HOW IT WORKS
           </a>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end mx-8 md:mx-16 lg:mx-20 xl:mx-40">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2">GET THE APP</button>
             
