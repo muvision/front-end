@@ -127,9 +127,9 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         <LatexWindow code={latexCode} />
         </div>
         <div>
-          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2" onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear drawing</button>
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150" onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear drawing</button>
           {/* <button onClick={saveImage}>Get image</button> */}
-          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-2">
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
             <label htmlFor="upload-button" className="upload-button">
               Upload Image
             </label>
@@ -142,7 +142,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
           </button>
           {selectedFile && <span>{selectedFile.name}</span>}
 
-          <button onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2">Submit drawing</button>
+          <button onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">Submit drawing</button>
         </div>
       </div>
     </>

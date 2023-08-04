@@ -76,19 +76,19 @@ export default function Navbar() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#home" className="text-xl font-semibold leading-6 text-gray-900">
+          <a href="#home" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
             HOME
           </a>
-          <a href="#features" className="text-xl font-semibold leading-6 text-gray-900">
+          <a href="#features" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
             FEATURES
           </a>
-          <a href="#howitworks" className="text-xl font-semibold leading-6 text-gray-900">
+          <a href="#howitworks" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
             HOW IT WORKS
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end mx-8 md:mx-16 lg:mx-20 xl:mx-40">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2">GET THE APP</button>
+            <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">GET THE APP</button>
             
           </a>
         </div>
@@ -120,7 +120,7 @@ export default function Navbar() {
               <div className="space-y-2 py-6">
                 <a
                   href="#home"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className=" block rounded-lg px-3 py-2  font-semibold text-gray-900 hover:text-theme hover:scale-130 transform transition ease-in-out duration-150"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   HOME
