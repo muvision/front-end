@@ -2,10 +2,14 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import SimpleWhiteBoard from "simple-white-board";
 import Controls from "./Controls";
 import axios from 'axios';
+const LatexWindow = require('./LatexWindow').default;
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export interface ReactSimpleWhiteBoardProps {
 }
+
+const sampleLatex = String.raw`$a^2+b^2=c^2$
+$a_5-3=\frac{b}{c}$`
 
 const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactSimpleWhiteBoardProps, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -14,6 +18,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   const [lineWidth, setLineWidth] = useState(3);
   const [lineColor, setLineColor] = useState("#000000");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [latexCode, setLatexCode] = useState<string>(sampleLatex);
 
   useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement, []);
 
@@ -111,12 +116,16 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
           setLineColor={setLineColor}
           setLineWidth={setLineWidth}
         />
-        <canvas
-          ref={canvasRef}
-          style={{ border: '#000000 solid 1px' }}
-          width={canvasWidth}
-          height={canvasWidth}
-        />
+        <div className="flex">
+          <canvas
+            ref={canvasRef}
+            width={canvasWidth}
+            height={canvasWidth}
+            className = "border-2 border-black rounded-md"
+          />
+          {/* <LatexWindow code="$$(3\times 4) \div (5-2)$$"/> */}
+        <LatexWindow code={latexCode} />
+        </div>
         <div>
           <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
           <button onClick={saveImage}>Get image</button>
