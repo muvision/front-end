@@ -23,8 +23,8 @@ export default function Controls(props: Props) {
         />
       </div> */}
       <div className="react-simple-white-board-control">
-        <label style={{ marginRight: 10 }}>Brush Width</label>
-        <input
+        {/* <label style={{ marginRight: 10 }}>Brush Width</label> */}
+        {/* <input
           type="range"
           min="1"
           max="50"
@@ -32,7 +32,7 @@ export default function Controls(props: Props) {
           onChange={(event) => {
             setLineWidth(event.target.value);
           }}
-        />
+        /> */}
       </div>
     </div>
   );
