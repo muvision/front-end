@@ -108,7 +108,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
 
   return (
     <>
-      <h1 className="font-bold text-2xl mt-4">Try out MuVision!</h1>
+      <h1 className="font-bold text-2xl mt-4 mb-2">Try out MuVision!</h1>
       <div className="react-simple-white-board">
         <Controls
           lineColor={lineColor}
@@ -121,7 +121,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
             ref={canvasRef}
             width={window.innerWidth*0.6}
             height={window.innerHeight*0.7}
-            className = "border-2 border-black rounded-md"
+            className = "border-2 border-theme-stroke rounded-md"
           />
           {/* <LatexWindow code="$$(3\times 4) \div (5-2)$$"/> */}
         <LatexWindow code={latexCode} />
