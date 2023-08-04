@@ -57,12 +57,12 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white border-b-2 border-purple mb-5">
+    <header className="bg-white border-b border-theme mb-5">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-14 w-auto" src="./MuvisionLogo.svg" alt="" />
+            <img className="h-12 w-auto scale-150 translate-y-3 mx-9 md:mx-16 lg:mx-18" src="./MuvisionLogo.svg" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -76,19 +76,19 @@ export default function Navbar() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#home" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#home" className="text-xl font-semibold leading-6 text-gray-900">
             HOME
           </a>
-          <a href="#features" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#features" className="text-xl font-semibold leading-6 text-gray-900">
             FEATURES
           </a>
-          <a href="#howitworks" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#howitworks" className="text-xl font-semibold leading-6 text-gray-900">
             HOW IT WORKS
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">GET THE APP</button>
+            <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2">GET THE APP</button>
             
           </a>
         </div>
@@ -143,7 +143,7 @@ export default function Navbar() {
               <div className="py-6">
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-black"
                 >
                   GET THE APP
                 </a>

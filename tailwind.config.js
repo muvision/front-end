@@ -6,7 +6,9 @@ module.exports = {
   theme: {
     colors: {
       'theme':'#7C7EAE',
-      'theme-stroke':"#5D5F88"
+      'theme-stroke':"#5D5F88",
+      'white': '#FFFFFF',
+      'black': '#000000',
     },
     fontFamily: {
       'sans': ['Chakra Petch', 'sans-serif'],

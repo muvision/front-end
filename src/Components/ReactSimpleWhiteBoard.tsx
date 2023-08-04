@@ -108,7 +108,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
 
   return (
     <>
-      <h1>Demo</h1>
+      <h1 className="font-bold text-2xl mt-4">Try out MuVision!</h1>
       <div className="react-simple-white-board">
         <Controls
           lineColor={lineColor}
@@ -127,9 +127,9 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         <LatexWindow code={latexCode} />
         </div>
         <div>
-          <button onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear</button>
-          <button onClick={saveImage}>Get image</button>
-          <button>
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2" onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear drawing</button>
+          {/* <button onClick={saveImage}>Get image</button> */}
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-2">
             <label htmlFor="upload-button" className="upload-button">
               Upload Image
             </label>
@@ -142,7 +142,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
           </button>
           {selectedFile && <span>{selectedFile.name}</span>}
 
-          <button onClick={sendImage}>Send image</button>
+          <button onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2">Submit drawing</button>
         </div>
       </div>
     </>
