@@ -119,8 +119,8 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         <div className="flex">
           <canvas
             ref={canvasRef}
-            width={canvasWidth}
-            height={canvasWidth}
+            width={window.innerWidth*0.6}
+            height={window.innerHeight*0.7}
             className = "border-2 border-black rounded-md"
           />
           {/* <LatexWindow code="$$(3\times 4) \div (5-2)$$"/> */}
