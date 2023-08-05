@@ -2,14 +2,17 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import SimpleWhiteBoard from "simple-white-board";
 import Controls from "./Controls";
 import axios from 'axios';
+const DefaultSpinner = require('./DefaultSpinner').default;
 const LatexWindow = require('./LatexWindow').default;
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export interface ReactSimpleWhiteBoardProps {
 }
 
-const sampleLatex = String.raw`$a^2+b^2=c^2$
-$a_5-3=\frac{b}{c}$`
+const sampleLatex = String.raw`\begin{align*}
+a^2 + b^2 &= c^2 \\
+a_5 - 3 &= \frac{b}{c}
+\end{align*}`
 
 const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactSimpleWhiteBoardProps, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,7 +21,8 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   const [lineWidth, setLineWidth] = useState(3);
   const [lineColor, setLineColor] = useState("#000000");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [latexCode, setLatexCode] = useState<string>(sampleLatex);
+  const [latexCode, setLatexCode] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement, []);
 
@@ -88,22 +92,36 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   }
 
   const sendImage = async () => {
-    const canvas = canvasRef.current;
-    const ctx = canvasRef.current?.getContext('2d');
-    if (canvas != null && ctx != null) {
-      let dataURL = canvas.toDataURL("image/png", 1.0);
-      const response = await fetch(dataURL);
-      const blob = await response.blob();
-      console.log("loading")
-      const formData = new FormData();
-      formData.append("image", blob, 'image.png');
-      let res = await axios.post('http://localhost:8000/muvision/classify_image/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      })
-      console.log(res.data);
+    setIsLoading(true);
+    try {
+      // const canvas = canvasRef.current;
+      // const ctx = canvasRef.current?.getContext('2d');
+      // if (canvas != null && ctx != null) {
+      //   let dataURL = canvas.toDataURL("image/png", 1.0);
+      //   const response = await fetch(dataURL);
+      //   const blob = await response.blob();
+      //   console.log("loading")
+      //   const formData = new FormData();
+      //   formData.append("image", blob, 'image.png');
+      //   let res = await axios.post('http://localhost:8000/muvision/classify_image/', formData, {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //     }
+      //   })
+      //  setLatexCode(res.data);
+      //   console.log(res.data);
+      // }
+
+      await new Promise(r => setTimeout(r, 1000));
+      setLatexCode(sampleLatex);
+
+    } catch (error) {
+      alert(error)
+      console.log(error)
+      setIsLoading(false)
     }
+    setIsLoading(false)
+    
   }
 
   return (
@@ -128,7 +146,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         </div>
         <div>
           <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150" onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear drawing</button>
-          {/* <button onClick={saveImage}>Get image</button> */}
+          <button onClick={saveImage}>Save drawing</button>
           <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
             <label htmlFor="upload-button" className="upload-button">
               Upload Image
@@ -142,7 +160,9 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
           </button>
           {selectedFile && <span>{selectedFile.name}</span>}
 
-          <button onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">Submit drawing</button>
+          <button disabled={isLoading} onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
+            {isLoading ? <p>Loading...</p> : <p>Submit drawing </p>}
+          </button>
         </div>
       </div>
     </>
