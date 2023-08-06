@@ -3,7 +3,7 @@ import React from 'react'
 export const WhatWeDo = () => {
   return (
     <>
-      <h1>What We Do</h1>
+      <h1 className="text-2xl font-bold mb-2">What We Do</h1>
       <p>
         Do you wish there was an easier way to type up your equations and formulas? If you answered yes, then you need MuVision, the app that can read your math homework and convert it to Latex code! 🙌 
         MuVision is a revolutionary app that uses the power of artificial intelligence to transform your handwritten math into beautiful and professional-looking latex code. 😍
