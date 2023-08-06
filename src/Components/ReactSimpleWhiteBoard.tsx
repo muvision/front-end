@@ -94,26 +94,33 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
   const sendImage = async () => {
     setIsLoading(true);
     try {
-      // const canvas = canvasRef.current;
-      // const ctx = canvasRef.current?.getContext('2d');
-      // if (canvas != null && ctx != null) {
-      //   let dataURL = canvas.toDataURL("image/png", 1.0);
-      //   const response = await fetch(dataURL);
-      //   const blob = await response.blob();
-      //   console.log("loading")
-      //   const formData = new FormData();
-      //   formData.append("image", blob, 'image.png');
-      //   let res = await axios.post('http://localhost:8000/muvision/classify_image/', formData, {
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data',
-      //     }
-      //   })
-      //  setLatexCode(res.data);
-      //   console.log(res.data);
-      // }
+      let res = null;
+      const canvas = canvasRef.current;
+      const ctx = canvasRef.current?.getContext('2d');
+      if (canvas != null && ctx != null) {
+        let dataURL = canvas.toDataURL("image/png", 1.0);
+        const response = await fetch(dataURL);
+        const blob = await response.blob();
+        console.log("loading")
+        const formData = new FormData();
+        formData.append("image", blob, 'image.png');
+        res = await axios.post('http://localhost:8000/muvision/classify_image/', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        })
+        if(res.data != null){
+          console.log(typeof(res.data));
+          setLatexCode(res.data);
+        }
+        console.log(res.data);
+      }else{
+        await new Promise(r => setTimeout(r, 1000));
+        setLatexCode(sampleLatex);
+      }
 
-      await new Promise(r => setTimeout(r, 1000));
-      setLatexCode(sampleLatex);
+      //await new Promise(r => setTimeout(r, 1000));
+      //setLatexCode(sampleLatex);
 
     } catch (error) {
       alert(error)
@@ -145,9 +152,10 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
         <LatexWindow code={latexCode} />
         </div>
         <div>
-          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150" onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear drawing</button>
-          <button onClick={saveImage}>Save drawing</button>
-          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-1 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150" onClick={() => {whiteBoard.current?.erase(); setWhite()}}>Clear drawing</button>
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-1 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150"
+          onClick={saveImage}>Save drawing</button>
+          <button className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-1 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
             <label htmlFor="upload-button" className="upload-button">
               Upload Image
             </label>
@@ -160,7 +168,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
           </button>
           {selectedFile && <span>{selectedFile.name}</span>}
 
-          <button disabled={isLoading} onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
+          <button disabled={isLoading} onClick={sendImage} className="bg-theme hover:bg-theme-stroke text-white font-bold py-2 px-4 rounded my-2 mx-1 hover:font-bold hover:scale-110 transform transition ease-in-out duration-150">
             {isLoading ? <p>Loading...</p> : <p>Submit drawing </p>}
           </button>
         </div>
