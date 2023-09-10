@@ -79,7 +79,7 @@ export default function Navbar() {
           <a href="#" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
             HOME
           </a>
-          <a href="#home" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
+          <a href="#demo" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
             DEMO
           </a>
           <a href="#howitworks" className="text-xl font-semibold leading-6 text-gray-900 hover:text-theme hover:scale-110 transform transition ease-in-out duration-150">
@@ -126,7 +126,7 @@ export default function Navbar() {
                   HOME
                 </a>
                 <a
-                  href="#home"
+                  href="#demo"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >

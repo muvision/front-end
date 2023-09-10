@@ -5,7 +5,7 @@ import React from 'react'
 
 export const WhiteBoard = () => {
   return (
-    <div id="home">
+    <div id="demo">
         <ReactSimpleWhiteBoard/>
     </div>
   )
