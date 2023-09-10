@@ -14,7 +14,7 @@ const App = () => {
         <Welcome/>
         <WhatWeDo/>
         <WhiteBoard/>
-        <Features/>
+        {/* <Features/> */}
         <HowItWorks/>
       </ div>
     </>

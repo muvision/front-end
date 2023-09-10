@@ -133,7 +133,7 @@ const ReactSimpleWhiteBoard = React.forwardRef<HTMLCanvasElement>((props: ReactS
 
   return (
     <>
-      <h1 className="font-bold text-2xl mt-4 mb-2">Try out MuVision!</h1>
+      <h1 className="font-bold text-2xl mt-4 mb-2">Try out MuVision by drawing below!</h1>
       <div className="react-simple-white-board">
         <Controls
           lineColor={lineColor}

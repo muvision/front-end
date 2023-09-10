@@ -2,8 +2,7 @@ import React from 'react'
 
 const HowItWorks = () => {
   return (
-    <div>
-      <div id="howitworks">features</div>
+    <div id="howitworks">
       <h1 className="text-2xl font-bold mt-5">How It Works</h1>
       <div className="bg-theme border border-theme-stroke flex justify-items-center rounded-xl p-6 my-2">
         <p className="text-white">
