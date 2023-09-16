@@ -5,6 +5,7 @@ import { Features } from './container/Features.jsx'
 import HowItWorks from './container/HowItWorks.jsx'
 import { WhatWeDo } from './container/WhatWeDo.jsx'
 import Welcome from './Components/Welcome.jsx'
+import Footer from './Components/Footer.jsx'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <WhiteBoard/>
         {/* <Features/> */}
         <HowItWorks/>
+        <Footer/>
       </ div>
     </>
   )

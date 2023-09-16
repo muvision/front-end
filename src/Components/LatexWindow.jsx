@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // let Latex = require('react-latex');
 // import Latex from 'react-latex-next'
-import MathJax from 'react-mathjax';
 
 const LatexWindow = (props) => {
   return (
